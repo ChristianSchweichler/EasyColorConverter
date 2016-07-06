@@ -1,14 +1,19 @@
+/*
+  EasyColorConverter.cpp - Color Converter for Arduino.
+  Created by Christian Schweichler, 2016
+*/
+
 #include "EasyColorConverter.h"
 
-RGBColor EasyColorConverter::hsv2rgb(double hue, double saturation, double value) {
+RGBColor EasyColorConverter::hsv2rgb(float hue, float saturation, float value) {
 	RGBColor ret;
-	double r, g, b;
+	float r, g, b;
 
 	int hi = (int)(hue * 6);
-	double f = (hue * 6) - hi;
-	double p = value * (1 - saturation);
-	double q = value * (1 - f * saturation);
-	double t = value * (1 - (1 - f) * saturation);
+	float f = (hue * 6) - hi;
+	float p = value * (1 - saturation);
+	float q = value * (1 - f * saturation);
+	float t = value * (1 - (1 - f) * saturation);
 
 	switch(hi % 6) {
 		case 0:
@@ -43,10 +48,21 @@ RGBColor EasyColorConverter::hsv2rgb(double hue, double saturation, double value
 			break;
 	}
 
-	ret.r = ceil(r * 255);
-	ret.g = ceil(g * 255);
-	ret.b = ceil(b * 255);
+	ret.r = r;
+	ret.g = g;
+	ret.b = b;
 
 	return ret;
-
 }
+
+HSVColor EasyColorConverter::rgb2hsv(float r, float g, float b) {
+	HSVColor ret;
+
+	//ToDo
+	
+	ret.r = 0;
+	ret.g = 0;
+	ret.b = 0;	
+	return 
+}
+
