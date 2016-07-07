@@ -5,8 +5,8 @@
 
 #include "EasyColorConverter.h"
 
-RGBColor EasyColorConverter::hsv2rgb(float hue, float saturation, float value) {
-	RGBColor ret;
+void EasyColorConverter::hsv2rgb(float hue, float saturation,float value, float *red, float *green, float *blue) {
+
 	float r, g, b;
 
 	int hi = (int)(hue * 6);
@@ -48,21 +48,47 @@ RGBColor EasyColorConverter::hsv2rgb(float hue, float saturation, float value) {
 			break;
 	}
 
-	ret.r = r;
-	ret.g = g;
-	ret.b = b;
-
-	return ret;
+	*red = r;
+	*green = g;
+	*blue = b;
 }
 
-HSVColor EasyColorConverter::rgb2hsv(float r, float g, float b) {
-	HSVColor ret;
+void EasyColorConverter::rgb2hsv(float red, float green, float blue, float *hue, float *saturation,float *value) {
+		
+	float h, s, v;
+	float max_ = max(max(red, green), blue);
+	float min_ = min(min(red, green), blue);
+	float delta = (max_ - min_);
 
-	//ToDo
-	
-	ret.r = 0;
-	ret.g = 0;
-	ret.b = 0;	
-	return 
+	if (max_ == min_)  {
+		h = 0;
+	} else {
+		if (max_ == red)  {
+			h = (green - blue) / delta;
+		} else if (max_ == green) {
+			h = 2 + (blue - red) / delta;
+		} else if (max_ == blue) {
+			h = 4 + (red -green) / delta;		
+		}
+			
+			h = h / 6.0;
+			if (h < 0) {
+				h = h + 1.0;
+			}
+			
+	}
+	 
+	if (max_ == 0) {
+		s = 0;
+	} else {
+		s = delta / max_;
+	}
+
+	v = max_;
+
+	*hue = h;
+	*saturation = s;
+	*value = v;	
+
 }
 

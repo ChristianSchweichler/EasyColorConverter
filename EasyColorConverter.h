@@ -8,26 +8,11 @@
 
 #include "Arduino.h"
 
-struct RGBColor;
-struct HSVColor;
-
-struct RGBColor{
-			float r;
-			float g;
-			float b;
-		};
-
-struct HSVColor{
-			float hue;
-			float saturation;
-			float value;		
-		};
-
 class EasyColorConverter {
 	
 	public:	
-		RGBColor hsv2rgb(float hue, float saturation,float value);
-		HSVColor rgb2hsv(float r, float g, float b);
+		void hsv2rgb(float hue, float saturation,float value, float *red, float *green, float *blue);
+		void rgb2hsv(float red, float green, float blue, float *hue, float *saturation,float *value);
 };
 
 
