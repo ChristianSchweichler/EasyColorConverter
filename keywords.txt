@@ -1,0 +1,5 @@
+EasyColorConverter	KEYWORD1
+hsv2rgb	KEYWORD2
+rgb2hsv	KEYWORD2
+
+
